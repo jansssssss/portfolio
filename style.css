@@ -34,22 +34,80 @@ header {
     opacity: 0;
     animation: slideRight 1s ease forwards;
 }
-
-.navbar a {
-    display: inline-block;
+.logo {
+    position: relative;
     font-size: 25px;
     color: #fff;
     text-decoration: none;
-    font-weight: 500;
-    margin-left: 35px;
-    transition:  0.3s;
+    font-weight: 600;
+    cursor: default;
     opacity: 0;
-    animation: slideTop .5s ease forwards;
-    animation-delay: calc(.2 * var(--i));
+    animation: slideRight 1s ease forwards;
+}
+.navbar {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: #0a192f;
+    padding: 15px;
+    border-radius: 8px;
+    gap: 15px;
+}
+
+.navbar li{
+    list-style: none;
+}
+.navbar li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
 }
 
 .navbar a:hover {
     color: #0ef;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        display: none;              /* sembunyikan default */
+        flex-direction: column;
+        background: #061323;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        text-align: center;
+        padding: 20px 0;
+    }
+    
+.navbar.active {
+    display: flex;
+    transform: translateY(-100);
+    animation: slideBottom 1s ease forwards;
+    pointer-events: auto;
+}
+
+.menu-toggle {
+    font-size: 28px;
+    display: block;
+    color: white;
+    cursor: pointer;
+    opacity: 0;
+    animation: slideRight 1s ease forwards;
+    animation-delay: .1s;
+}
+
+.nav-menu.closing {
+    transform: translateY(-100%);
+    opacity: 0;
+    transition:transform 4s ease, opacity 4s ease;
 }
 
 .home {
@@ -60,9 +118,9 @@ header {
     height: 100vh;
     background-size: cover;
     display: flex;
-    justify-content: left; /* Agar konten berada di sebelah kiri */
-    align-items: center; /* Agar konten berada di tengah secara vertikal */
-    padding: 70px 10% 0; /* Padding horizontal untuk memberi ruang di sisi kiri dan kanan */
+    justify-content: left;
+    align-items: center;
+    padding: 70px 10% 0;
 }
 
 .home-content {
@@ -148,16 +206,28 @@ header {
     align-items: center;
     gap: 1.5rem;
 }
-.about-img img{
-    padding-bottom: 20%;
-    max-width: 630px;
-    height: auto;
-    width: 100%;
-    border-radius: 8px;
+.about-img{
+    border-radius: 50%;
+    border-image:50%;
+    object-position: cover;
+    border: 20px solid gold;
+    border-width: 5px;
+    border-left: 5px;
+    border-right: 5px;
+    padding-top: 5px;
+    margin-top: 45px;
+    margin-left: 15px;
+    margin-right: 15px;
 }
+    .gambar-bulat {
+      width: 200px; /* Sesuaikan ukuran lebar sesuai kebutuhan */
+      height: 200px; /* Sesuaikan ukuran tinggi agar sama dengan lebar */
+      object-fit: cover; /* Memastikan gambar mengisi lingkaran tanpa terdistorsi */
+      border-radius: 25%;
+    }
+
 .about-text h2{
     font-size: 60px;
-
 }
 .about-text h2 span{
     color: #0ef;
@@ -175,7 +245,7 @@ header {
     line-height: 1.4;
     margin-bottom: 4rem;
 }
-#services{
+.services{
     color: aliceblue;
     font-size: 20px;
     line-height: 1.4;
@@ -196,7 +266,6 @@ header {
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(259px,1fr));
     gap: 40px; 
-    /* grid- */
     margin-top: 50px;
 }
 .services-list div{
@@ -213,7 +282,6 @@ header {
 .services-list div i{
     font-size: 50px;
     margin-bottom: 30px;
-
 }
 .services-list div h2{
     font-size: 30px;
@@ -248,20 +316,21 @@ header {
     0 0 25px cyan, 0 0 50px cyan,
     0 0 100px cyan, 0 0 200px cyan
 }
-
 .services-list div:hover{
     transform: translateY(-10px);
 }
 section{
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
+    align-items: center;
 }
 .container1{
-    width: 510px;
-    height: 500px;
-    padding: 75px 90px;
-    margin-left: 90px;
-
+    width: 100%;
+    max-width: 510px;
+    height: auto;
+    padding: 40px 20px;
+    margin: 0;
 }
 .heading1{
     text-align: center;
@@ -291,7 +360,6 @@ section{
     animation: showText 0.5 1s linear forwards;
     opacity: 0;
 }
-
 .Technical-bars .bar .progress-line {
     position: relative;
     border-radius: 10px;
@@ -307,8 +375,6 @@ section{
         transform: scaleX(1);
     }
 }
-
-
 .Technical-bars .bar .progress-line span {
     height: 100%;
     background-color: #0ef;
@@ -318,32 +384,11 @@ section{
     transform: scaleX(0);
     transform-origin: left;
 }
-
-
-.progress-line.html span {
-    width: 90%;
-}
-
-/* Progress untuk CSS */
-.Technical-bars .bar .progress-line.css span {
-    width: 60%;
-}
-
-/* Progress untuk Javascript */
-.Technical-bars .bar .progress-line.javascript span {
-    width: 45%;
-}
-
-/* Progress untuk Python */
-.Technical-bars .bar .progress-line.python span {
-    width: 50%;
-}
-
-/* Progress untuk React */
-.Technical-bars .bar .progress-line.react span {
-    width: 75%;
-}
-
+.progress-line.html span { width: 90%; }
+.Technical-bars .bar .progress-line.css span { width: 60%; }
+.Technical-bars .bar .progress-line.javascript span { width: 45%; }
+.Technical-bars .bar .progress-line.python span { width: 50%; }
+.Technical-bars .bar .progress-line.react span { width: 75%; }
 .Technical-bars .bar .progress-line span::after{
     position: absolute;
     padding: 1px 8px;
@@ -356,21 +401,11 @@ section{
     animation: showText 0.5s 1.5s linear forwards;
     opacity: 0;
 }
-.Technical-bars .bar .progress-line.html span::after{
-    content: "90%";
-}
-.Technical-bars .bar .progress-line.css span::after{
-    content: "60%";
-}
-.Technical-bars .bar .progress-line.javascript span::after{
-    content: "45%";
-}
-.Technical-bars .bar .progress-line.python span::after{
-    content: "50%";
-}
-.Technical-bars .bar .progress-line.react span::after{
-    content: "75%";
-}
+.Technical-bars .bar .progress-line.html span::after{ content: "90%"; }
+.Technical-bars .bar .progress-line.css span::after{ content: "60%"; }
+.Technical-bars .bar .progress-line.javascript span::after{ content: "45%"; }
+.Technical-bars .bar .progress-line.python span::after{ content: "50%"; }
+.Technical-bars .bar .progress-line.react span::after{ content: "75%"; }
 .Technical-bars .bar .progress-line span::before{
     content: "";
     position: absolute;
@@ -384,12 +419,9 @@ section{
     right: 0;
     animation: showText 0.5s 1.5s linear forwards;
     opacity: 0;
-
 }
 @keyframes showText{
-    100%{
-        opacity: 1;
-    }
+    100%{ opacity: 1; }
 }
 .radial-bars{
     width: 100%;
@@ -403,7 +435,6 @@ section{
     height: 170px;
     margin-bottom: 10px;
     position: relative;
-
 }
 .radial-bars .radial-bar svg{
     position: absolute;
@@ -412,22 +443,17 @@ section{
     transform: translate(-50%, -50%) rotate(-90deg);
     width: 120px;
     height: 160px;
-
 }
 .radial-bars .radial-bar .progress-bar{
     stroke-width: 10;
-    atop-color: black;
     fill: transparent;
     stroke-dasharray : 502;
     stroke-dashoffset: 502;
     stroke-linecap: round;
     animation: animate-bar 1s linear forwards;
-
 }
 @keyframes animate-bar{
-    100%{
-        stroke-dashoffset: -1;
-    }
+    100%{ stroke-dashoffset: -1; }
 }
 .path {
     stroke-width: 10;
@@ -437,106 +463,50 @@ section{
     stroke-dashoffset: 502;
     stroke-linecap: round;
 }
-
 .path-1{animation: animate-path1 1s 1s linear forwards;}
 .path-2{animation: animate-path2 1s 1s linear forwards;}
 .path-3{animation: animate-path3 1s 1s linear forwards;}
 .path-4{animation: animate-path4 1s 1s linear forwards;} 
-
 @keyframes slideRight {
-    0% {
-        transform: translateX(-100px);
-        opacity: 0;
-
-    }
-    100% {
-        transform: translateX(0px);
-        opacity: 1;
-        
-    }
+    0% { transform: translateX(-100px); opacity: 0; }
+    100% { transform: translateX(0px); opacity: 1; }
 }
-
 @keyframes slideLeft {
-    0% {
-        transform: translateY(100px);
-        opacity: 0;
-
-    }
-    100% {
-        transform: translateY(0px);
-        opacity: 1;
-        
-    }
+    0% { transform: translateY(100px); opacity: 0; }
+    100% { transform: translateY(0px); opacity: 1; }
 }
-
-
 @keyframes slideTop {
-    0% {
-        transform: translateY(100px);
-        opacity: 0;
-
-    }
-    100% {
-        transform: translateY(0px);
-        opacity: 1;
-        
-    }
+    0% { transform: translateY(100px); opacity: 0; }
+    100% { transform: translateY(0px); opacity: 1; }
 }
 @keyframes slideBottom {
-    0% {
-        transform: translateY(-100px);
-        opacity: 0;
-
-    }
-    100% {
-        transform: translateY(0px);
-        opacity: 1;
-        
-    }
+    0% { transform: translateY(-100px); opacity: 0; }
+    100% { transform: translateY(0px); opacity: 1; }
 } 
+@keyframes animate-path1{ 100%{ stroke-dashoffset: 50; } }
+@keyframes animate-path2{ 100%{ stroke-dashoffset: 100; } }
+@keyframes animate-path3{ 100%{ stroke-dashoffset: 125; } }
+@keyframes animate-path4{ 100%{ stroke-dashoffset: 75; } }
 
-@keyframes animate-path1{
-    100%{
-        stroke-dashoffset: 50;; /*satuan mulai 50 */
-    }
+.radial-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
 }
-@keyframes animate-path2{
-    100%{
-        stroke-dashoffset: 100;;
-    }
-}
-@keyframes animate-path3{
-    100%{
-        stroke-dashoffset: 125;;
-    }
-}
-@keyframes animate-path4{
-    100%{
-        stroke-dashoffset: 75;;
-    }
-}
-
 .radial-bar .percentage{
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 17px;
-    font-weight: 500;
+    margin-top: -10px;
+    font-size: 20px;
+    font-weight: bold;
     animation: showText 0.5s 1s linear forwards;
-    opacity: 0;
 }
-.radial-bar .text{
-    width: 100%;
-    position: absolute;
+.radial-bar .text {
+    margin-top: 100px; /* jarak teks ke lingkaran */
+    position: relative;
     text-align: center;
-    left: 50%;
-    bottom: -5px;
-    transform: translate(-50px);
-    font-size: 17px;
-    font-weight: 500;
-    animation: showText 0.5s 1s linear forwards;
-    opacity: 0;
+    padding-top: 50px;
 }
 .main-text{
     padding-top: 130px;
@@ -551,7 +521,6 @@ section{
 .main-text h2 span{
     color: #0ef;
 }
-
 .portfolio-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, auto));
@@ -560,26 +529,20 @@ section{
     margin-left: 25px;
     margin-right: 25px;
     gap: 20px; 
-    
 }
-
 .row {
     position: relative;
     overflow: hidden;
     border-radius: 8px;
     cursor: pointer;
-   
     gap: 20px; 
-    
 } 
-
 .row img {
     width: 100%; 
     display: block;
     border-radius: 8px;
     transition: transform 0.5s ease;
 }
-
 .layer{
     width: 100%;
     height: 0;
@@ -596,22 +559,17 @@ section{
     text-align: center;
     padding: 0 40px;
     transition: height 0.5s;
-    
-
 } 
-
 .layer h5{
     color: #000;
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 15px;
-
 }
 .layer p{
     color: #000;
     font-size: 1rem;
     line-height: 1.8;
-
 }
 .layer i{
     color: #ff004f;
@@ -625,22 +583,22 @@ section{
     justify-content: center;
     border-radius: 50%; 
 }
-.row:hover img{
-    transform: scale(1.1);
+.row:hover img{ transform: scale(1.1); }
+.row:hover .layer{ height: 100%; } 
 
+  .contact{
+    margin-top: 80px;
+    padding: 50px 10%;
 }
-.row:hover .layer{
-    height: 100%;
-} 
-
-.contact-text h2{
-    font-size: 90px;
-    line-height: 1;
+.contact-text{
     text-align: center;
-
 }
-.contact-text h2 span{
-    color: #0ef;
+.contact-text h2{
+   font-size: 36px;
+   margin-left: 0;
+}
+.contact-text h2 span{ 
+    color: #0ef; 
 }
 .contact-text h4{
     margin: 15px 0;
@@ -653,15 +611,8 @@ section{
     font-size: 20px;
     line-height: 30px;
     margin-bottom: 2rem;
-
 }
-.contact-list{
-    margin-bottom: 3rem;
-}
-.contact-list li{
-    margin-bottom: 10px;
-    display: block;
-}
+.contact-list{ margin-bottom: 3rem; }
 .contact-list li{
     margin-bottom: 10px;
     display: block;
@@ -672,7 +623,6 @@ section{
     font-size: 20px;
     font-weight: 600;
     transition: all .40s ease;
-
 }
 .contact-list li a:hover{
     transform: scale(1.01) translateY(-5px);
@@ -701,17 +651,18 @@ section{
     color: #000;
     box-shadow: 0 0 20px #0ef;
 }
-.contact-form form{
-    position: relative;
 
+.contact-form form {
+    position: relative;
 }
+
 .contact-form form input, .contact-form form textarea{
     border: none;
     outline: none;
     width: 100%;
     padding: 18px;
     background: #555557;
-    color: #000;
+    color: white;
     font-size: 1rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
@@ -720,7 +671,7 @@ section{
 }
 .contact-form textarea{
     resize: none;
-    height: 220px;
+    height: 150px;
 
 }
 .contact-form form .send{
@@ -744,37 +695,68 @@ section{
     0 0 25px cyan, 0 0 50px cyan,
     0 0 100px cyan, 0 0 200px cyan;
 }
+/* Responsive fix untuk "Tentang Saya" & "Pengalaman Saya" */
 @media (max-width: 768px) {
-    .contact {
-        grid-template-columns: 1fr; /* Agar layout menjadi satu kolom di layar kecil */
+    .about {
+        grid-template-columns: 1fr; /* ubah jadi 1 kolom */
+        text-align: center;
+        gap: 20px;
+        padding: 20px;
+}
+
+    .about-img img {
+        padding-bottom: 0;
+        max-width: 50%;
+        margin: 0 auto;
+}
+.info { 
+    font-size:13px; 
+    opacity:.9; 
+    margin-top:10px; 
     }
+
+    .about-text h2 {
+        font-size: 32px;
+        margin-bottom: 15px;
 }
-@keyframes slideLeft {
-    0% {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
+
+    .about-text h4 {
+        font-size: 18px;
+        margin-bottom: 15px;
 }
-.last-text p{
-    width: 100%;
-    text-align: center;
-    padding: 25px 0;
-    background: rgb(7, 85, 91);
-    font-weight: 300;
-    margin-top: 70px;
+
+    .about-text p {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 20px;
 }
-.top{
-    position: fixed;
-    bottom: 2.1rem;
-    right: 2.1rem;
+
+    .container {
+        padding: 20px;
 }
-.top i{
-    color: #000;
-    background: #0ef;
-    padding: 10px;
-    border-radius: 0.5rem;
+
+    .main-text {
+        padding-top: 50px;
+        margin-top: 50px;
+}
+
+    .main-text h2 {
+        font-size: 36px;
+        padding-bottom: 20px;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+.banner-text {
+  display: flex;       /* biar background sesuai panjang teks */
+  background-color: #00f7ff;   /* warna tosca */
+  color: #0a0f1c;              /* warna teks kontras (gelap) */
+  padding: 8px 70px;           /* jarak dalam */
+  border-radius: 1px;          /* sudut melengkung */
+  font-weight: bold;           /* biar lebih tegas */
+  font-size: 18px;
 }

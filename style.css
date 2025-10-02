@@ -128,7 +128,7 @@ header {
 }
 
 .home-content h3 {
-    font-size: 28px;
+    font-size: 10px;
     font-weight: 700;
     opacity: 0;
     animation: slideBottom 1s ease forwards;
@@ -140,7 +140,7 @@ header {
     animation-delay: .7s;
 }
 .home-content h1 {
-    font-size: 49px;
+    font-size: 25px;
     font-weight: 700;
     margin: -3px 0;
     opacity: 0;

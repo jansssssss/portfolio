@@ -334,10 +334,14 @@ section{
 }
 .heading1{
     text-align: center;
-    text-decoration: underline;
-    text-underline-offset: 10px;
-    text-decoration-thickness: 5px;
-    margin-bottom: 50px; 
+    font-style: italic;
+    margin-bottom: 50px;
+    margin-top: 5px;
+    font-size: 10px;
+}
+.heading2{
+    text-align: center;
+    margin-bottom: 50px;
 }
 .bar{
     font-size: 23px;

@@ -17,4 +17,8 @@ navLinks.forEach(link => {
       link.addEventListener('click', () => {
         navbar.classList.remove('active');
       });
+   if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/sw.js")
+    .then(() => console.log("Service Worker registered"));
+}
 });
